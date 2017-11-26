@@ -1,0 +1,26 @@
+- name: Install nginx
+  apt:
+   name: nginx
+
+- name: Remove default config
+  file:
+    path: '{{ item }}'
+    state: absent
+  with_items:
+   - /etc/nginx/sites-avaliable/default
+   - /etc/nginx/sites-enabled/default
+
+- name: Create nginx config
+  copy:
+   src: jenkins.local
+   dest: /etc/nginx/sites-avaliable/
+
+- name: Enable site
+  file:
+    src: /etc/nginx/sites-avaliable/jenkins.local
+    dest: /etc/nginx/sites-enabled/jenkins.local
+
+- name: Restart nginx
+  systemd:
+    name: nginx
+    state: restarted

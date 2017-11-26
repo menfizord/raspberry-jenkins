@@ -1,0 +1,3 @@
+- import_tasks: 1_prerequisites.yml
+- import_tasks: 2_install_jenkins.yml
+- import_tasks: 3_install_nginx.yml

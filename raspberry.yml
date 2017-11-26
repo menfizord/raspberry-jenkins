@@ -1,0 +1,22 @@
+- name: Add Rasperry host to local /etc/hosts
+  hosts: 127.0.0.1 
+  connection: local
+  roles:
+    - add-raspberry-host
+    
+- name: Local jenkins provisioning
+  hosts: raspberry
+  connection: ssh
+  pre_tasks:
+    - hostname:
+        name: jenkins.local
+    - apt:
+       update_cache: yes
+       upgrade: dist
+    - apt:
+       name: '{{ item }}'
+      with_items:
+        - python3
+        - golang
+  roles:
+    - jenkins

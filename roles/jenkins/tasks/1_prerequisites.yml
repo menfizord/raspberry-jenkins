@@ -1,0 +1,6 @@
+- name: Install prerequisites for jenkins
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - openjdk-8-jre-headless
+    - openjdk-8-jre
