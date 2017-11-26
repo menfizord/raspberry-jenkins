@@ -19,6 +19,7 @@
   file:
     src: /etc/nginx/sites-avaliable/jenkins.local
     dest: /etc/nginx/sites-enabled/jenkins.local
+    state: link
 
 - name: Restart nginx
   systemd:
